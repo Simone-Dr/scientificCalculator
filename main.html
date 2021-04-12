@@ -3,93 +3,57 @@
 
 <head> 
 	<title>Calculator</title> 
-	<script src="js/script.js"></script>
+	<script src="script.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
 	<meta charset="UTF-8"> 
-	
-	<style> 
-		 body {
-		  height: 100%;
-		  width: 100%;
-		  margin: 0;
-		  padding: 0;
-		  font-family: TimesNewRoman;
-		  background: #333333;
-		}
-
-		#input {
-		  height: 10%;
-		  width: 100%;
-		  float: left;
-		  background-color: black;
-		  color: white;
-		  font-size: 2.5vmin;
-		  line-height: 10vh;
-		}
-	
-
-		#keyboard {
-		  height: 60%;
-		  width: 100%;
-		  float: left;
-		  background-color: #212121;
-		}
-
-
-		.btn {
-		  height: 10%;
-	 	  width: 33%;
-		  float: left;
-		  color: #FAFAFA;
-		  text-align: center;
-		  font-size: 2.5vmin;
-		  line-height: 7vh;
-		  cursor: pointer;
-		}
-
-		.btn:hover {
-			background-color: rgba(230, 230, 230, 0.2);
-
-		}
-
-	</style> 
 </head>
 
 <body>
 
 
 	<div id = "input">  </div>
-	<div id = "keybord">
-		<div id class = "btn" onclick="number('1');"> 1 </div>
-		<div id class = "btn" onclick="number('2');"> 2 </div>
-		<div id class = "btn" onclick="number('3');"> 3 </div>
-		<div id class = "btn" onclick="number('4');"> 4 </div>
-		<div id class = "btn" onclick="number('5');"> 5 </div>
-		<div id class = "btn" onclick="number('6');"> 6 </div>
-		<div id class = "btn" onclick="number('7');"> 7 </div>
-		<div id class = "btn" onclick="number('8');"> 8 </div>
-		<div id class = "btn" onclick="number('9');"> 9 </div>
-		<div id class = "btn" onclick="number('0');"> 0 </div>
-		<div id class = "btn" onclick="number('.');"> , </div>
-		<div id class = "btn" onclick="solve();"> = </div>	
-		<div id class = "btn" onclick="ArithSym('+');"> + </div>
-		<div id class = "btn" onclick="ArithSym('-');"> - </div>
-		<div id class = "btn" onclick="ArithSym('/');"> / </div>
-		<div id class = "btn" onclick="ArithSym('*');"> * </div>		
-		<div id class = "btn" onclick="ArithSym('(');"> ( </div>
-		<div id class = "btn" onclick="ArithSym(')');"> ) </div>
-		<div id class = "btn" onclick="ArithSym('sin'); ArithSym('(');"> sin </div>
-		<div id class = "btn" onclick="ArithSym('cos'); ArithSym('(');"> cos </div>
-		<div id class = "btn" onclick="ArithSym('tan'); ArithSym('(');"> tan </div>
-		<div id class = "btn" onclick="ArithSym('pi');"> π </div>
-		<div id class = "btn" onclick="ArithSym('sqroot'); ArithSym('(');"> √ </div>
-		<div id class = "btn" onclick="ArithSym('power'); ArithSym('(');"> ^ </div>
-		<div id class = "btn" onclick="clr();"> <-- </div>
-			
-		
-	</div>
+		<div class = "flexbox-container">
+			<div class = "flexbox-item flexbox-item-1">
+				<div id class = "btn" onclick="constant('π');"> π </div>
+				<div id class = "btn" onclick="constant('e');"> e </div> 		
+				<div id class = "btn" onclick="NotNumber('+');"> + </div>
+				<div id class = "btn" onclick="NotNumber('(');"> ( </div>
+				<div id class = "btn" onclick="NotNumber(')');"> ) </div>
+				<div id class = "btn" onclick="NotNumber('-');"> - </div>
+				<div id class = "btn" onclick="NotNumber('ln'); NotNumber('(');"> ln </div>
+				<div id class = "btn" onclick="NotNumber('log'); NotNumber('(');"> log </div><!--todo-->
+				<div id class = "btn" onclick="NotNumber('/');"> / </div>
+				<div id class = "btn" onclick="NotNumber('√'); NotNumber('(');"> √ </div>
+				<div id class = "btn" onclick="NotNumber('^'); NotNumber('(');"> ^ </div>
+				<div id class = "btn" onclick="NotNumber('*');"> * </div>	
+			</div>
 
+			<div class = "flexbox-item flexbox-item-2">
+				<div id class = "btn" onclick="number('1');"> 1 </div>
+				<div id class = "btn" onclick="number('2');"> 2 </div>
+				<div id class = "btn" onclick="number('3');"> 3 </div>
+				<div id class = "btn" onclick="number('4');"> 4 </div>
+				<div id class = "btn" onclick="number('5');"> 5 </div>
+				<div id class = "btn" onclick="number('6');"> 6 </div>
+				<div id class = "btn" onclick="number('7');"> 7 </div>
+				<div id class = "btn" onclick="number('8');"> 8 </div>
+				<div id class = "btn" onclick="number('9');"> 9 </div>
+				<div id class = "btn" onclick="number('0');"> 0 </div>
+				<div id class = "btn" onclick="dot();"> , </div>
+				<div id class = "btn" onclick="negate()"> (-) </div>  <!--todo-->
+			</div>
 
+			<div class = "flexbox-item flexbox-item-3">
+				<div id class = "btn" onclick="NotNumber('sin'); NotNumber('(');"> sin </div>
+				<div id class = "btn" onclick="NotNumber('cos'); NotNumber('(');"> cos </div>
+				<div id class = "btn" onclick="NotNumber('tan'); NotNumber('(');"> tan </div>
+				<div id class = "btn" onclick="clr();"> clr </div>
+				<div id class = "btn" onclick="solve();"> = </div> 
+				<div id class = "btn" onclick="ans();"> ans </div>  
+			</div>
+		</div>
 
 </body> 
 
-</html>			 	 
+</html>			 
