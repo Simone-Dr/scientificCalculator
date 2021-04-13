@@ -12,45 +12,46 @@
 <body>
 
 
-	<div id = "input">  </div>
+	<div id = "input"> </div>
+
 		<div class = "flexbox-container">
 			<div class = "flexbox-item flexbox-item-1">
-				<div id class = "btn" onclick="constant('π');"> π </div>
-				<div id class = "btn" onclick="constant('e');"> e </div> 		
-				<div id class = "btn" onclick="NotNumber('+');"> + </div>
-				<div id class = "btn" onclick="NotNumber('(');"> ( </div>
-				<div id class = "btn" onclick="NotNumber(')');"> ) </div>
-				<div id class = "btn" onclick="NotNumber('-');"> - </div>
-				<div id class = "btn" onclick="NotNumber('ln'); NotNumber('(');"> ln </div>
-				<div id class = "btn" onclick="NotNumber('log'); NotNumber('(');"> log </div><!--todo-->
-				<div id class = "btn" onclick="NotNumber('/');"> / </div>
-				<div id class = "btn" onclick="NotNumber('√'); NotNumber('(');"> √ </div>
-				<div id class = "btn" onclick="NotNumber('^'); NotNumber('(');"> ^ </div>
-				<div id class = "btn" onclick="NotNumber('*');"> * </div>	
+				<div id class = "btn" onclick="generalInput(); constant('π');"> π </div>
+				<div id class = "btn" onclick="generalInput(); constant('e');"> e </div>	
+				<div id class = "btn" onclick="generalInput(); NotNumber('+');"> + </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('(');"> ( </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber(')');"> ) </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('-');"> - </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('ln'); NotNumber('(');"> ln </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('log'); NotNumber('(');"> log </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('/');"> / </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('√'); NotNumber('(');"> √ </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('^'); NotNumber('(');"> ^ </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('*');"> * </div>	
 			</div>
 
 			<div class = "flexbox-item flexbox-item-2">
-				<div id class = "btn" onclick="number('1');"> 1 </div>
-				<div id class = "btn" onclick="number('2');"> 2 </div>
-				<div id class = "btn" onclick="number('3');"> 3 </div>
-				<div id class = "btn" onclick="number('4');"> 4 </div>
-				<div id class = "btn" onclick="number('5');"> 5 </div>
-				<div id class = "btn" onclick="number('6');"> 6 </div>
-				<div id class = "btn" onclick="number('7');"> 7 </div>
-				<div id class = "btn" onclick="number('8');"> 8 </div>
-				<div id class = "btn" onclick="number('9');"> 9 </div>
-				<div id class = "btn" onclick="number('0');"> 0 </div>
-				<div id class = "btn" onclick="dot();"> , </div>
-				<div id class = "btn" onclick="negate()"> (-) </div>  <!--todo-->
+				<div id class = "btn" onclick="generalInput(); number('1');"> 1 </div>
+				<div id class = "btn" onclick="generalInput(); number('2');"> 2 </div>
+				<div id class = "btn" onclick="generalInput(); number('3');"> 3 </div>
+				<div id class = "btn" onclick="generalInput(); number('4');"> 4 </div>
+				<div id class = "btn" onclick="generalInput(); number('5');"> 5 </div>
+				<div id class = "btn" onclick="generalInput(); number('6');"> 6 </div>
+				<div id class = "btn" onclick="generalInput(); number('7');"> 7 </div>
+				<div id class = "btn" onclick="generalInput(); number('8');"> 8 </div>
+				<div id class = "btn" onclick="generalInput(); number('9');"> 9 </div>
+				<div id class = "btn" onclick="generalInput(); number('0');"> 0 </div>
+				<div id class = "btn" onclick="generalInput(); dot();"> , </div>
+				<div id class = "btn" onclick="generalInput(); negate()"> (-) </div>  <!--todo-->
 			</div>
 
 			<div class = "flexbox-item flexbox-item-3">
-				<div id class = "btn" onclick="NotNumber('sin'); NotNumber('(');"> sin </div>
-				<div id class = "btn" onclick="NotNumber('cos'); NotNumber('(');"> cos </div>
-				<div id class = "btn" onclick="NotNumber('tan'); NotNumber('(');"> tan </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('sin'); NotNumber('(');"> sin </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('cos'); NotNumber('(');"> cos </div>
+				<div id class = "btn" onclick="generalInput(); NotNumber('tan'); NotNumber('(');"> tan </div>
 				<div id class = "btn" onclick="clr();"> clr </div>
-				<div id class = "btn" onclick="solve();"> = </div> 
-				<div id class = "btn" onclick="ans();"> ans </div>  
+				<div id class = "btn" onclick="equalSign();"> = </div> 
+				<div id class = "btn" onclick="generalInput(); ans();"> ans </div>  
 			</div>
 		</div>
 
