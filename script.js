@@ -1,47 +1,60 @@
 //js
-var pressedEnter = false; 
-var save = ""; 
-var numbers = new Array();
-var answer; 
+var pressedEnter = false; //will disable typing after equal sign is pressed
+var save = "";
+var numbers = new Array(); //saves input
+var answer; //saves last answer
 
 
-function number(inp){
-	if (pressedEnter == true) {
-		clr(); 
+function generalInput(){
+
+	if (pressedEnter == true) { //typing after pressing the equal sign    
+		clr(); 					// creates new input
 	}
-		input.innerHTML += inp; 
-		save += inp;  
+}
+
+
+
+function number(inp){	
+		input.innerHTML += inp; //display input
+		save += inp;  			//add single digit inputs together temporary to 
+								//create the whole multi-digit number 		
+	 				
 }
 
 function NotNumber(inp){
-	if (pressedEnter == true) {
-		clr(); 
-	}
-
 		input.innerHTML += inp; 
-		if (save != ""){
-		numbers.push(save);
+
+		if (save != ""){	//if a number was typed before an operator
+		numbers.push(save); //save it in array 
 		}
-		save = ""; 
-		numbers.push(inp)
+		save = ""; //reset the number-save
+
+		if ((inp == "(") && (numbers[numbers.length-1] == ")")) {
+			numbers.push("*"); // transforms (3+2)(2+3) to (3+2)*(2+3)
+		} 
+
+		numbers.push(inp); //push operator to array
 
 } 
 
 function dot(){
 	if (save == "") {
-		number('0'); 
-		number('.');
+		number('0');  // if dot is pressed without a number right before 
+		number('.');  // add zero (.34 to 0.34)
 	} else {
 		number('.');	
 	}
 }
 
-function negate(){
-	//ToDo------------------------------------------------------------------------
+function negate(){	
+	input.innerHTML+= "-("; // -3 transformed to -1 * ( 3
+	numbers.push("-1");		
+	numbers.push("*"); 
+	numbers.push("(");	
 }
 
 
-function constant(inp){
+function constant(inp){ //transform constants to numbers
 	if (pressedEnter == false){ 
 		input.innerHTML += inp; 
 		
@@ -54,28 +67,6 @@ function constant(inp){
 	}
 }
 
-
-function clr() {
-	input.innerHTML = " "; 
-	pressedEnter = false; 
-	numbers = []; 
-	save = "";  
-}
-
-function solve() {
-
-	if (save != ""){
-		numbers.push(save);
-	}
-	if (pressedEnter == false){ 
-		input.innerHTML += " = "; 
-		pressedEnter = true; 
-		let temp = rechnen(InfixToPostfix()); 
-		input.innerHTML += temp;
-		answer = temp; 
-	}	
-}
-
 function ans(){
 	if (answer == undefined) {
 		alert("no answer stored"); 
@@ -84,7 +75,32 @@ function ans(){
 	} 
 }
 
-const arithFunctions = [ "sin", "cos", "tan", "√", "e", "ln"];
+
+function clr() {
+	input.innerHTML = " "; 
+	pressedEnter = false; 
+	numbers = []; 
+	save = "";  
+}
+
+function equalSign () {
+
+	if (save != ""){
+		numbers.push(save);
+	}
+
+	if ((pressedEnter == false) && (numbers != undefined)){ 
+		input.innerHTML += " = "; 
+		pressedEnter = true; 
+		let temp = solve(InfixToPostfix()); 
+		input.innerHTML += temp;
+		answer = temp; 
+	}	
+}
+
+
+
+const arithFunctions = [ "sin", "cos", "tan", "√", "log", "ln"];
 const operationCheck = [ "+", "-", "*", "/", "^"];
 
 function precedence(op) {
@@ -160,7 +176,7 @@ function InfixToPostfix() {
 }
 
 
-function rechnen(output) {
+function solve(output) {
 	let Stack = new Array(); 
 	let num1;
 	let num2; 
@@ -215,7 +231,7 @@ function unaryOperation(x, op) {
 		break; 
 		case "ln"  : return (Math.log(x));
 		break; 
-		case "e"   : return (Math.exp(x));
+		case "log"   : return (Math.log10(x));
 		break; 
 		case "√"   : return (Math.sqrt(x)); 
 		break; 
