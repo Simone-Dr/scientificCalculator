@@ -1,6 +1,5 @@
 
-body {
-  	height: 90vh;
+body { 	
   	width: 100%;
   	margin: 0;
   	padding: 0;
@@ -14,14 +13,14 @@ body {
 	overflow-x: auto;
 	overflow-y: hidden; 
     white-space: nowrap;
-    height: 10%;
+    min-height: 7vh;
 	width: 92%;
 	float: left;
 	background-color: black;
 	opacity: 0.7;
  	color: white;
  	font-size: 5vmin;
-  	line-height: 10vh;	
+  	
   	padding: 2% 4%; 
   } 
 

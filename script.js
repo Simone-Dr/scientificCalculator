@@ -100,8 +100,8 @@ function equalSign () {
 
 
 
-const arithFunctions = [ "sin", "cos", "tan", "√", "log", "ln"]; //unaryOperation
-const operationCheck = [ "+", "-", "*", "/", "^"]; //binaryOperation
+const checkIfUnaryOperation = [ "sin", "cos", "tan", "√", "log", "ln"]; 
+const checkIfBinaryOperation = [ "+", "-", "*", "/", "^"]; 
 
 function precedence(op) { //every operator is assigned a value concidering their precedence 
 	switch(op) {		  // 3+4*5^(2)   --> you solve 5^2 then 4*25 then 3+100
@@ -118,7 +118,7 @@ function precedence(op) { //every operator is assigned a value concidering their
 	} 
 }
 
-function associativity(op) { //power is right-associative  
+function isLeftAssociative(op) { //power is right-associative  
 	if (op != "^") { //(meaning the operations are grouped from the right) 
 		return true
 	} else return false
@@ -130,71 +130,82 @@ function InfixToPostfix() { //Shunting-Yard-Algorithm
 	let Output = new Array();
 	let Stack = new Array(); 
 	for (let i = 0; i < numbers.length; i++) {
-		if (isNaN(numbers[i]) == false) { //if number Otuput
+		if (isNaN(numbers[i]) == false) { //if number -> Output
 			Output.push(numbers[i]);
-		} else if (arithFunctions.includes (numbers[i])) {
+		} else if (checkIfUnaryOperation.includes (numbers[i])) { //if sin() etc. put on Stack
 			Stack.push(numbers[i]);
-		} else if (operationCheck.includes (numbers[i])) {
+		} else if (checkIfBinaryOperation.includes (numbers[i])) { //if +, * etc put operator on Stack while its
 			while 
-				(((precedence(numbers[i]) <= precedence(Stack[Stack.length - 1])) ||
-				(arithFunctions.includes(Stack[Stack.length - 1]))) && 
-				((Stack[Stack.length - 1]) != "(") && 
-				([Stack.length - 1] > (-1)) && 
-				(associativity(numbers[i]))) 
+				(((precedence(numbers[i]) <= precedence(Stack[Stack.length - 1])) || //precedence is higher or equal to Stack top
+				(checkIfUnaryOperation.includes(Stack[Stack.length - 1]))) && //or there is an unaryOperation on Stack top
+				((Stack[Stack.length - 1]) != "(") && // and the Stacktop isn't "("
+				([Stack.length - 1] > (-1)) && //and the Stack isn't empty
+				(isLeftAssociative(numbers[i]))) //and op is left-associative
 			{
 				Output.push(Stack.pop());	
 			}
-			Stack.push(numbers[i]);
-		} else if (numbers[i] == "(") {
-			Stack.push(numbers[i]);	
+
+			Stack.push(numbers[i]); // push to stack 
+
+		} else if (numbers[i] == "(") { 
+			Stack.push(numbers[i]);	//"(" is always pushed onto the Stack
+
+	//while there is no "(" on Stack, the top of the Stack is addet to Output, if no output is found output alert
 		} else if (numbers[i] == ")") {
-			while ((Stack[Stack.length - 1]) != "(") {
+			while ((Stack[Stack.length - 1]) != "(") { 
 				Output.push(Stack.pop());	
 				if (Stack.length < 0) {
-					console.log("Es fehlt eine offene Klammer");
+					console.log("Error! An open parenthesis is missing");
 					break;	
 				}
 
 			}
-			Stack.pop();
 
-			if (arithFunctions.includes (Stack[Stack.length - 1])) {
-				Output.push(Stack.pop());	
+			Stack.pop(); //open parenthesis are removed
+
+			if (checkIfUnaryOperation.includes (Stack[Stack.length - 1])) {
+				Output.push(Stack.pop());	//if unaryOperation is following it is pushed to output
 			}		
 		}
 	} 
 
-	do {
-			if ((Stack[Stack.length - 1]) == "(") {
-				alert("Fehler! Es fehlt eine offene Klammer");
-			}
+	do { // Stack is emptied (pushed onto Output)
+		if ((Stack[Stack.length - 1]) == "(") {
+			alert("Error! A closed parenthesis is missing");
+		}
 
-			Output.push(Stack.pop());	
+		Output.push(Stack.pop());	
 
-		} while (Stack.length > 0); 
-	return Output;
+	} while (Stack.length > 0); 
+
+	return Output; //returns the input transformed from infix to postfix
 }
 
 
-function solve(output) {
+function solve(postix) { //solves the input that is transformed to postfix 
+/* The every element of the postfix array, is now sorted one after the other according to their type.
+All numbers are immediately put on a stack, when an operator is recognized then the two previous numbers 
+are offset against each other depending on the operator. The result pushed on top of the stack. For unary Operations
+only one Number is pushed. After calculating all numbers, the last number on the stack is the result. */
+
 	let Stack = new Array(); 
 	let num1;
 	let num2; 
 	let temp; 
 
-	for (let i = 0; i < (output.length); i++) { 
-		if (isNaN(output[i]) == false) {
-			Stack.push(output[i]);  
-		} else if (operationCheck.includes(output[i])){
+	for (let i = 0; i < (postix.length); i++) { 
+		if (isNaN(postix[i]) == false) {
+			Stack.push(postix[i]);  
+		} else if (checkIfBinaryOperation.includes(postix[i])){
 			num1 = Stack.pop();
 			num2 = Stack.pop();
-			console.log("Rechnen", num1, num2, output[i]);  
-			temp = binaryOperation(num1, num2, output[i]);
+			console.log("Rechnen", num1, num2, postix[i]);  
+			temp = binaryOperation(num1, num2, postix[i]);
 			Stack.push(temp); 
 			console.log("ergebnis", Stack[Stack.length-1]);
-		} else if (arithFunctions.includes(output[i])){
+		} else if (checkIfUnaryOperation.includes(postix[i])){
 			num1 = Stack.pop(); 
-			temp = unaryOperation(num1, output[i]); 
+			temp = unaryOperation(num1, postix[i]); 
 			Stack.push(temp); 
 		}
 	}
