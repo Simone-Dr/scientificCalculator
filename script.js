@@ -1,5 +1,5 @@
 //js
-var pressedEnter = false; //will disable typing after equal sign is pressed
+var pressedEqual = false; //will disable typing after equal sign is pressed
 var save = "";
 var numbers = new Array(); //saves input
 var answer; //saves last answer
@@ -7,7 +7,7 @@ var answer; //saves last answer
 
 function generalInput(){
 
-	if (pressedEnter == true) { //typing after pressing the equal sign    
+	if (pressedEqual == true) { //typing after pressing the equal sign    
 		clr(); 					// creates new input
 	}
 }
@@ -55,7 +55,7 @@ function negate(){
 
 
 function constant(inp){ //transform constants to numbers
-	if (pressedEnter == false){ 
+	if (pressedEqual == false){ 
 		input.innerHTML += inp; 
 		
 		switch(inp) {
@@ -67,7 +67,7 @@ function constant(inp){ //transform constants to numbers
 	}
 }
 
-function ans(){
+function ans(){ 
 	if (answer == undefined) {
 		alert("no answer stored"); 
 	} else {
@@ -76,35 +76,35 @@ function ans(){
 }
 
 
-function clr() {
+function clr() { // reset numbers, safe etc. 
 	input.innerHTML = " "; 
-	pressedEnter = false; 
+	pressedEqual = false; 
 	numbers = []; 
 	save = "";  
 }
 
 function equalSign () {
 
-	if (save != ""){
-		numbers.push(save);
+	if (save != ""){ 
+		numbers.push(save); // add last number to array
 	}
 
-	if ((pressedEnter == false) && (numbers != undefined)){ 
-		input.innerHTML += " = "; 
-		pressedEnter = true; 
-		let temp = solve(InfixToPostfix()); 
-		input.innerHTML += temp;
-		answer = temp; 
+	if ((pressedEqual == false) && (numbers[0] != undefined)){ //prevent writing equal 
+		input.innerHTML += " = ";  							  //before Input
+		pressedEqual = true; 
+		let temp = solve(InfixToPostfix()); // transform Infix to Postfix and Solve 	
+		input.innerHTML += temp; 
+		answer = temp; //safe last answer in answer var
 	}	
 }
 
 
 
-const arithFunctions = [ "sin", "cos", "tan", "√", "log", "ln"];
-const operationCheck = [ "+", "-", "*", "/", "^"];
+const arithFunctions = [ "sin", "cos", "tan", "√", "log", "ln"]; //unaryOperation
+const operationCheck = [ "+", "-", "*", "/", "^"]; //binaryOperation
 
-function precedence(op) {
-	switch(op) {
+function precedence(op) { //every operator is assigned a value concidering their precedence 
+	switch(op) {		  // 3+4*5^(2)   --> you solve 5^2 then 4*25 then 3+100
 		case "^" : return 4;
 		break;
 		case "*" : return 3;
@@ -118,19 +118,19 @@ function precedence(op) {
 	} 
 }
 
-function associativity(op) {
-	if (op != "^") {
+function associativity(op) { //power is right-associative  
+	if (op != "^") { //(meaning the operations are grouped from the right) 
 		return true
 	} else return false
 
 } 
 
 
-function InfixToPostfix() {
+function InfixToPostfix() { //Shunting-Yard-Algorithm 
 	let Output = new Array();
 	let Stack = new Array(); 
 	for (let i = 0; i < numbers.length; i++) {
-		if (isNaN(numbers[i]) == false) {
+		if (isNaN(numbers[i]) == false) { //if number Otuput
 			Output.push(numbers[i]);
 		} else if (arithFunctions.includes (numbers[i])) {
 			Stack.push(numbers[i]);
