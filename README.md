@@ -51,9 +51,9 @@ unary Operations:
 * ln
 
 binary Operations:
-* +
-* -
-* *
+* '+'
+* '-'
+* '* '
 * /
 * ^
 
