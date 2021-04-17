@@ -15,10 +15,10 @@ Push  sin  	to Stack				every unary Op is pushed to Stack
 Push   ( 	to Stack				every open parenthesis is pushed to Stack
 Push   5 	to Output 
 Del    (   	from Stack				closed parenthesis pops every operator ( in this case none) until it reaches open parenthesis, which it deletes
-Pop   sin 	from Stack to Output 	every unary Op on the Stack before an open parenthesis is poped and pushed onto the Output
+Pop   sin 	from Stack to Output 	 every unary Op on the Stack before an open parenthesis is poped and pushed onto the Output
 Push   / 	to Stack				because the precedence of / is higher than the one of + it is pushed onto the Stack 
 Push   7	to Output
-Pop    / 	from Stack to Output 	the Stack is emptied onto the Output because every Element of the input has been sorted
+Pop    / 	from Stack to Output 	 the Stack is emptied onto the Output because every Element of the input has been sorted
 Pop	   +	from Stack to Output 
 
 Output: 3 5 sin 7 / +
