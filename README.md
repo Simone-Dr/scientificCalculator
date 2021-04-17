@@ -5,6 +5,9 @@ To do so the Shunting-Yard-Algorithm is used.
 https://simone-dr.github.io/scientificCalculator/
 
 ## Shunting-Yard
+
+```
+
 Input: 3+sin(5)/7
 * Push  3 	to Output 				every Number is pushed to output
 * Push sin  to Stack				every unary Op is pushed to Stack
@@ -19,7 +22,11 @@ Input: 3+sin(5)/7
 
 Output: 3 5 sin 7 / +
 
+```
+
 ## Solve Postfix
+
+```
 Input: 3 5 sin 7 / +
 * Push  3  to Stack
 * Push  5  to Stack
@@ -28,8 +35,10 @@ Input: 3 5 sin 7 / +
 * Pop 7 and (-0.95..) of Stack and safe it in temp var 
 * Push solution of -0.95.. / 7 (-0.136..) on Stack 
 * Pop -0.13.. and 3 and Push the solution of -0.136.. + 3 (2,864..)
+
 Output: 2,864..
 
+```
 
 ## included operands
 unary Operations:
