@@ -178,6 +178,9 @@ function InfixToPostfix() { //Shunting-Yard-Algorithm
 
 	} while (Stack.length > 0); 
 
+
+	console.log(Output);
+	
 	return Output; //returns the input transformed from infix to postfix
 }
 
