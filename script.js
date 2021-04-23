@@ -93,6 +93,7 @@ function equalSign () {
 		input.innerHTML += " = ";  							  //before Input
 		pressedEqual = true; 
 		let temp = solve(InfixToPostfix()); // transform Infix to Postfix and Solve 	
+		temp = Math.round(temp * 10000000000) / 10000000000; //round to 10 digit
 		input.innerHTML += temp; 
 		answer = temp; //safe last answer in answer var
 	}	
@@ -236,6 +237,12 @@ let x;
 }
 
 function unaryOperation(x, op) {
+
+	if (document.getElementById("toggle-state").checked == true){
+		x = x * (Math.PI/180);  //rad ro deg 
+	}
+
+
 	switch(op) {
 		case "sin" : return (Math.sin(x));
 		break; 
