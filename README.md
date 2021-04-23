@@ -49,6 +49,7 @@ unary Operations:
 * √
 * log
 * ln
+* + rad/deg
 
 binary Operations:
 * '+'
