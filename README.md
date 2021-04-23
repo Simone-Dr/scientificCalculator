@@ -50,7 +50,7 @@ unary Operations:
 * log
 * ln
 
-/+ rad/deg
++ rad/deg
 
 binary Operations:
 * '+'
