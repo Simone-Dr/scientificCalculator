@@ -1,5 +1,5 @@
 # Scientific Calculator
-A work in progress calculator transforming the infix expression `7 * 2` to postfix `7 2 *` and then solving it. 
+A calculator transforming the infix expression `7 * 2` to postfix `7 2 *` and then solving it. 
 To do so the Shunting-Yard-Algorithm is used. 
 
 https://simone-dr.github.io/scientificCalculator/
